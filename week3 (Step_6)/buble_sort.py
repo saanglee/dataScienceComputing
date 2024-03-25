@@ -16,3 +16,27 @@ def bouble_sort(arr):
 
 arr = [3, 1, 9, 5]
 print(bouble_sort(arr)) # [1, 3, 5, 9]
+
+# bubble sort with recursive function
+def bubble_sort_recursive(arr):
+  n = len(arr)
+  if n == 1:
+    return arr
+  for i in range(n-1):
+    if arr[i] > arr[i+1]:
+      arr[i], arr[i+1] = arr[i+1], arr[i]
+  return bubble_sort_recursive(arr[:-1]) + arr[-1:]
+
+print(bubble_sort_recursive(arr)) # [1, 3, 5, 9]
+
+# bouble sort with recursive function and descending order
+def bubble_sort_recursive_desc(arr):
+  n = len(arr)
+  if n == 1:
+    return arr
+  for i in range(n-1):
+    if arr[i] < arr[i+1]:
+      arr[i], arr[i+1] = arr[i+1], arr[i]
+  return bubble_sort_recursive_desc(arr[:-1]) + arr[-1:]
+
+print(bubble_sort_recursive_desc(arr)) # [9, 5, 3, 1]

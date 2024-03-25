@@ -35,7 +35,7 @@ def ssort1(s):
       return acc
   return loop(s, [])
 
-print(ssort1(list)) # [2, 3, 4, 5]
+print('ssort1: ',ssort1(list)) # [2, 3, 4, 5]
 
 ### append 사용해서 소팅 ###
 

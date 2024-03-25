@@ -20,8 +20,6 @@ def merge_sort(arr):
   left = merge_sort(left)
   right = merge_sort(right)
 
-  # print('mid: ', mid, 'left: ', left, 'right: ', right)
-  # print('-----------------------------------')
   return merge(left, right)
 
 def merge(left, right):
@@ -29,21 +27,19 @@ def merge(left, right):
   i = j = 0
   
   while i < len(left) and j < len(right):
-    print('left: ', left, 'right: ', right)
     if left[i] < right[j]: # left가 더 작을 때
       result.append(left[i])
       i += 1
     else: # right가 더 작을 때
       result.append(right[j])
       j += 1
-    
+  
+  print('result:', result, 'left[i:]', left[i:], 'right[j:]', right[j:])
   result += left[i:]
-  print('result += left[i:] ---> ', result)
   result += right[j:]
-  print('result += right[j:] ---> ', result)
   return result
 
 
-list = [3, 1, 9, 5]
+list = [21, 3, 1, 9, 5, 6]
 sorted_list = merge_sort(list)
-# print(sorted_list) # [1, 2, 3, 4, 5, 13, 21, 42] 
+print(sorted_list)
