@@ -1,7 +1,8 @@
 import os 
 
 # print("Current Working Directory: ",os.getcwd()) # 현재 디렉토리
-os.chdir('/Users/sangji/Documents/Grad/Spring 2024/Data Science Computing/week4') # Change the current working directory to where your file is located
+current_dir = os.getcwd()
+os.chdir(f"{current_dir}/week4") # Change the current working directory to where your file is located
 
 # 문자열 검색: 파일 입출력
 t = open('input.txt', 'r')
