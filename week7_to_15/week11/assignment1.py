@@ -113,11 +113,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random
 cr = ClassificationReport(4)
 
 # Decision Tree
-clf = tree.DecisionTreeClassifier()
-clf = clf.fit(X_train, y_train)
-y_pred = clf.predict(X_test)
-print('Decision Tree 분류 결과:')
-cr.multiclass_evaluation(y_pred, y_test)
+clf = tree.DecisionTreeClassifier()     # Decision Tree classifier 객체 생성
+clf = clf.fit(X_train, y_train)         # classifier를 X_train, y_train 데이터를 이용해 학습 (X_train: feature, y_train: label), 학습된 classifier는 다시 clf에 저장됨
+y_pred = clf.predict(X_test)            # clf 사용해 X_test 데이터에 대한 예측을 수행, 예측된 label은 y_pred에 저장됨
+print('Decision Tree 분류 결과:')         
+cr.multiclass_evaluation(y_pred, y_test) # y_pred 예측된 레이블, y_test 실제 레이블 # y_pred와 y_test 사용해 다중 클래스 평가 수행
+                                         
 
 # K-neighbors
 clf = KNeighborsClassifier()
