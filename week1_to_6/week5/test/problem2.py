@@ -25,7 +25,7 @@ class Bank:
       else: 
         with open('info.txt', 'a') as f:
           f.write(self.__name + ', ' + self.__pw + ' 0\n')
-      
+
         self.__info[self.__name] = [self.__pw, 0]
         print('>>> 계정이 등록되었습니다 <<<')
         self.login()
