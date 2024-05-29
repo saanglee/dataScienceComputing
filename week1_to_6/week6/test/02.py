@@ -7,61 +7,80 @@ class GameController:
       
   def play(self):
     print("Game Start")
-    tnum = self.__target.get_tnum()
-    prob = 1/16
-    name = self.__name
+    target_num = self.__target.get_target_num()
+    # prob = 1/16
+    # name = self.__name
     while True:
-      inum = Reader.input_number()
-      prob = self.__target.get_prob()
-      decision = Decision(tnum, inum, prob) 
+      target_num = self.__target.get_target_num()
+      user_num = Reader.input_number()
+      decision = Decision(target_num, user_num, self.__target.get_prob())
       
       if decision.iswin():
-        print(f"{name}, win!")
-        print(f"Target number: {decision.tnum}, input number: {decision.inum}, probability: {decision.prob}")
-        if Reader.ox(f"{name}, continue(y/n)"): # 재시작
-          tnum = self.__target.get_tnum()
-          prob = 1/16
+        print(f"{self.__name}, win!")
+        print(f"Target number: {decision.target_num}, input number: {decision.user_num}, probability: {decision.prob}")
+        if Reader.ox(f"{self.__name}, continue(y/n)"): # 재시작
+          target_num = self.__target.get_target_num()
+          # prob = 1/16
+          self.__target.reset_prob()
         else:
           break
       elif decision.islose():
-        print(f"{name}, lose!")
-        print(f"Target number: {decision.tnum}, input number: {decision.inum}, probability: {decision.prob}")
-        if Reader.ox(f"{name}, continue(y/n)"): 
-          tnum = self.__target.get_tnum()
-          prob = 1/16
+        print(f"{self.__name}, lose!")
+        print(f"Target number: {decision.target_num}, input number: {decision.user_num}, probability: {decision.prob}")
+        if Reader.ox(f"{self.__name}, continue(y/n)"): 
+          target_num = self.__target.get_target_num()
+          # prob = 1/16
+          self.__target.reset_prob()
         else:
           break
       else:
         print(decision.updown)
 
+  #     if decision.iswin() or decision.islose():
+  #       self.handle_result(decision)
+  #       if not Reader.ox(f"{self.__name}, continue(y/n)"):
+  #         break
+  #     else:
+  #       print(decision.updown)
+    
+  # def handle_result(self, decision):
+  #   result = "win" if decision.iswin() else "lose"
+  #   print(f"{self.__name}, {result}!")
+  #   print(f"Target number: {decision.target_num}, input number: {decision.user_num}, probability: {decision.prob}")
+  #   self.__target.reset_prob()
+        
+
 class Target:
   def __init__(self):
     self.__prob = 1/16
   
-  def get_tnum(self) -> int:
-    self.__tnum = random.randint(1, 16)
-    return self.__tnum
+  def get_target_num(self) -> int:
+    self.__target_num = random.randint(1, 16)
+    return self.__target_num
       
   def get_prob(self) -> float:
     self.__prob *= 2
     print('Target class) prob: ', self.__prob)
     return self.__prob
+  
+  def reset_prob(self):
+    self.__prob = 1/16
 
 class Decision:
-  def __init__(self, tnum: int, inum: int, prob: float):
+  def __init__(self, target_num: int, user_num: int, prob: float):
     # save info
-    self.__tnum = tnum
-    self.__inum = inum
+    self.__target_num = target_num
+    self.__user_num = user_num
     self.__prob = prob
       
   @property
-  def tnum(self) -> int:
-    # return tnum
-    return self.__tnum
+  def target_num(self) -> int:
+    # return target_num
+    return self.__target_num
       
   @property
-  def inum(self) -> int:
-    return self.__inum
+  def user_num(self) -> int:
+    return self.__user_num
       
   @property
   def prob(self) -> float:
@@ -69,13 +88,13 @@ class Decision:
       
   @property
   def updown(self) -> str:      
-    if self.__tnum > self.__inum:
+    if self.__target_num > self.__user_num:
       return "UP! Try again!"
-    elif self.__tnum < self.__inum:
+    elif self.__target_num < self.__user_num:
       return "DOWN! Try again!"
       
   def iswin(self) -> bool:
-    return self.__tnum == self.__inum
+    return self.__target_num == self.__user_num
       
   def islose(self) -> bool:
     return self.__prob >= 1 
