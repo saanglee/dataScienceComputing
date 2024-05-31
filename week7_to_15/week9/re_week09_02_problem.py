@@ -20,5 +20,5 @@ from sklearn.model_selection import train_test_split
 # 데이터 불러오기
 titanic_df= pd.read_csv('titanic.csv')
 
-# data 10개 출력
+# data 10개 출력  
 print(titanic_df.head(10))
