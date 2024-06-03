@@ -11,14 +11,14 @@ def bubble_sort(lcm_list):
     return lcm_list
 
 
-def insert_sort(lcm_list):
+def insert_sort(lcm_list): 
     ### Edit Here ###
     if lcm_list != []:
-        return insert(lcm_list[0], insert_sort(lcm_list[1:]))
+        return insert_desc(lcm_list[0], insert_sort(lcm_list[1:]))
     else:
         return []
 
-def insert(x, sorted_list):
+def insert_desc(x, sorted_list): # 내림차순
     if not sorted_list:
         return [x]
     else:
@@ -27,7 +27,7 @@ def insert(x, sorted_list):
         if x >= first:
             return [x] + sorted_list
         else: 
-            return [first] + insert(x, others)
+            return [first] + insert_desc(x, others)
 
 
 def lcm_sort(random_list):

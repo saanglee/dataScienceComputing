@@ -50,8 +50,6 @@ class ClassificationReport: # Classification Report를 사용해 각 모델과 �
     # Recall은 TP (True Positive)를 TP + FN (False Negative)로 나눈 것
     def recall(self, TP, FP, FN, TN): 
         rc = None
-        #### Edit here ####
-        # calculate recall
         if TP + FN != 0:
             rc = TP / (TP + FN)
         else:
