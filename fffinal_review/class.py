@@ -1,5 +1,5 @@
 # week6 (2) 1~16 number
-
+import random
 
 class GameController:
     def __init__(self, name:str):

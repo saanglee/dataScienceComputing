@@ -31,7 +31,7 @@ class Kmeans:
             plt.scatter(self.data['x'], self.data['y'], color='black')
             plt.scatter(self.centroids[:, 0], self.centroids[:, 1], color='red', s=100, marker='x')
         plt.title('K-means Clustering')
-        plt.xlabel('X')
+        plt.xlabel('X') 
         plt.ylabel('Y')
         plt.show()
 
